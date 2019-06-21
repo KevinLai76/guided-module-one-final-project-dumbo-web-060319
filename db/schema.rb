@@ -10,11 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 3) do
+ActiveRecord::Schema.define(version: 7) do
+
+  create_table "crews", force: :cascade do |t|
+    t.string  "name"
+    t.integer "user_id"
+  end
 
   create_table "journeys", force: :cascade do |t|
     t.string  "scenario"
-    t.string  "week_number"
+    t.integer "week_number"
     t.integer "user_id"
   end
 
@@ -24,11 +29,12 @@ ActiveRecord::Schema.define(version: 3) do
     t.integer "crew_modifier"
     t.integer "choice"
     t.integer "journey_id"
+    t.integer "week_number"
   end
 
   create_table "users", force: :cascade do |t|
     t.string  "name"
-    t.integer "num_of_crew"
+    t.integer "num_of_crew", default: 7
   end
 
 end
